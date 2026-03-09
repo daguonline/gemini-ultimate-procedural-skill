@@ -1,4 +1,4 @@
-# Guía Definitiva de Gemini 2.5 y 3 para Vertex AI
+# Guía de la Gemini Ultimate Procedural Skill
 
 Esta guía consolida los aprendizajes de los reportes técnicos oficiales y las mejores prácticas de implementación para crear aplicaciones de IA de vanguardia.
 

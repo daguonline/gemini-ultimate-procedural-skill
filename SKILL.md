@@ -1,7 +1,7 @@
-name: Vertex AI Gemini Ultimate Skill
+name: Gemini Ultimate Procedural Skill
 description: Skill definitiva para implementar búsqueda semántica, multimodal e híbrida con Vertex AI Vector Search y Gemini 3.1.
 
-# Vertex AI Gemini Ultimate Skill
+# Gemini Ultimate Procedural Skill
 
 Este skill definitivo te permitirá implementar flujos de búsqueda vectorial de última generación (semántica, por tokens, híbrida y **multimodal**) usando Gemini 3.1 en Google Cloud Vertex AI.
 
