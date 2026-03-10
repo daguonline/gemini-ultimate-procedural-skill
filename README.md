@@ -65,6 +65,17 @@ Todos los notebooks están traducidos al español con explicaciones detalladas:
 - **Cuotas**: Los modelos Gemini en preview pueden tener límites de Rate Limit por tier.
 - **Modelos soportados**: Compatible con `gemini-2.5-flash`, `gemini-2.5-pro`, `gemini-3.1-pro-preview`, y `gemini-embedding-001`.
 
+## 📚 Origen de los Datos (Referencias)
+
+Los datos, documentos y activos usados en los ejemplos de esta Skill provienen de laboratorios oficiales de **Google Cloud Skills Boost** (y de scripts de aprovisionamiento automático como `skill.sh`). 
+
+A continuación se detalla de forma explícita y transparente el origen de cada conjunto de datos:
+
+- **Papers Científicos en PDF** (RAG Multimodal): Extraídos del bucket de Qwiklabs `gs://cloud-training/gsp1210/2507.06261v5.pdf` (y afines).
+- **Google Merch Shop Dataset** (Retail y Búsqueda Híbrida): Catálogo de productos oficial de GCSB disponible en `https://storage.googleapis.com/spls/gsp1297/google_merch_shop_items.csv`.
+- **Database Stack Overflow** (Búsqueda Semántica): Tabla pública alojada en BigQuery `bigquery-public-data.stackoverflow.posts_questions`.
+- **Activos de Imagen y Branding** (Tutoriales visuales): Descargados desde el bucket de GCSB `gs://spls/gsp520`.
+
 ## 📄 Licencia
 
 Apache License 2.0

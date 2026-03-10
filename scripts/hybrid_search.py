@@ -71,10 +71,10 @@ def hybrid_query(
         queries=[query],
         num_neighbors=num_neighbors,
     )
-    return response[0]
+    return response[0] if response else []
 
 
-def print_hybrid_results(results, df, title_col: str = "title"):
+def print_hybrid_results(results, df, title_col: str = "title", id_col: str = None):
     """
     Imprime los resultados de una consulta híbrida de forma legible.
 
@@ -82,11 +82,20 @@ def print_hybrid_results(results, df, title_col: str = "title"):
         results: Lista de vecinos devueltos por hybrid_query.
         df: DataFrame original con los datos.
         title_col: Nombre de la columna con el título/texto para mostrar.
+        id_col: (Opcional) Nombre de la columna ID, para búsquedas más robustas.
     """
     print(f"{'Resultado':<45} {'Dist. Densa':>12} {'Dist. Dispersa':>15}")
     print("-" * 75)
     for neighbor in results:
-        title = df[title_col].iloc[int(neighbor.id)]
+        if id_col and id_col in df.columns:
+            row_df = df[df[id_col].astype(str) == str(neighbor.id)]
+            title = row_df[title_col].iloc[0] if not row_df.empty else f"ID: {neighbor.id}"
+        else:
+            try:
+                title = df[title_col].iloc[int(neighbor.id)]
+            except (ValueError, IndexError):
+                title = f"ID: {neighbor.id}"
+                
         dense_dist = neighbor.distance if neighbor.distance else 0.0
         sparse_dist = neighbor.sparse_distance if neighbor.sparse_distance else 0.0
         print(f"{title:<45} {dense_dist:>12.4f} {sparse_dist:>15.4f}")

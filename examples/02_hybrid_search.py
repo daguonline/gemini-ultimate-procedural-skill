@@ -45,14 +45,15 @@ DEPLOYED_INDEX_ID = f"hybrid_search_deployed_{UID}"
 # =============================================================================
 print("PASO 1: Inicializando...")
 from google.cloud import aiplatform
-from vertexai.preview.language_models import TextEmbeddingModel
+from google import genai
 
 aiplatform.init(project=PROJECT_ID, location=LOCATION)
-text_model = TextEmbeddingModel.from_pretrained("text-embedding-005")
+client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
 
 
 def get_dense_emb(text):
-    return text_model.get_embeddings([text])[0].values
+    response = client.models.embed_content(model="gemini-embedding-001", contents=[text])
+    return response.embeddings[0].values
 
 
 # =============================================================================
@@ -104,7 +105,7 @@ index_request = {
     "metadata": {
         "contentsDeltaUri": BUCKET_URI,
         "config": {
-            "dimensions": 768,
+            "dimensions": 3072,
             "approximateNeighborsCount": 10,
             "distanceMeasureType": "DOT_PRODUCT_DISTANCE",
             "algorithmConfig": {

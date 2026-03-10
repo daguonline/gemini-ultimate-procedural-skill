@@ -105,7 +105,7 @@ results = semantic_query(my_endpoint, DEPLOYED_INDEX_ID, query_emb)
 print(f"\n  Pregunta: '{test_question}'")
 print(f"  Top {len(results)} resultados similares:")
 for i, neighbor in enumerate(results):
-    row = df.query(f"id == {int(neighbor.id)}", engine="python")
+    row = df[df["id"].astype(str) == str(neighbor.id)]
     if not row.empty:
         print(f"    {i+1}. [{neighbor.distance:.4f}] {row.title.values[0]}")
 

@@ -147,7 +147,7 @@ def deploy_index(
     endpoint: aiplatform.MatchingEngineIndexEndpoint,
     index: aiplatform.MatchingEngineIndex,
     deployed_index_id: str,
-    machine_type: str = "e2-standard-16",
+    machine_type: str = "e2-standard-2",
     min_replicas: int = 1,
     max_replicas: int = 1,
 ):
@@ -201,7 +201,7 @@ def semantic_query(
         queries=[query_embedding],
         num_neighbors=num_neighbors,
     )
-    return response[0]
+    return response[0] if response else []
 
 
 # =============================================================================
