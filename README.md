@@ -28,6 +28,7 @@ Este repositorio es un **skill** definitivo (guía procedimental y herramientas)
 
 Contenido maestro traducido y adaptado:
 - [**Multimodal RAG**](examples/intro_multimodal_rag_es.ipynb): RAG avanzado con PyMuPDF.
+- [**Rich Documents Challenge**](examples/inspect_rich_documents_es.ipynb): Solución al desafío de documentos complejos con tablas y gráficos.
 - [**Recomendaciones Retail**](examples/multimodal_retail_recommendations_es.ipynb): Recomendaciones visuales.
 - [**Casos de Uso Multimodales**](examples/intro_multimodal_use_cases_es.ipynb): Capacidades multimodales.
 - [**Text Embeddings & Vector Search**](examples/intro_textemb_vectorsearch_es.ipynb): Búsqueda semántica.

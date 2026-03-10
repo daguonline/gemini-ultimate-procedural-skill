@@ -139,12 +139,16 @@ config = GenerateContentConfig(thinking_config={"thinking_level": "high"})
 response = client.models.generate_content(model="gemini-3.1-pro", contents=query, config=config)
 ```
 
-### 2. RAG Multimodal con PyMuPDF
-No proceses solo texto. Si el documento tiene gráficos o tablas:
-- Usa `PyMuPDF` para extraer bloques visuales.
-- Usa `multimodal-embedding-001` para indexarlos.
+### 2. RAG Multimodal Avanzado
+Para documentos con contenido mixto (tablas, diagramas, imágenes):
+- **Extracción de Metadatos**: Usa `get_document_metadata` con sus 4 argumentos clave:
+  ```python
+  text_df, img_df = get_document_metadata(model, pdf_path, save_dir, prompt)
+  ```
+- **Búsqueda Semántica de Fragmentos**: Recupera fragmentos (chunks) usando similitud de coseno.
+- **Construcción de Contexto**: Une los fragmentos recuperados en un solo string de contexto antes de enviarlo a Gemini para mayor fidelidad.
 
-### 3. Salida Escructurada para Automatización
+### 3. Salida Estructurada para Automatización
 Asegura que tu sistema de búsqueda devuelva JSON puro:
 ```python
 config = GenerateContentConfig(response_mime_type="application/json")
@@ -152,6 +156,16 @@ config = GenerateContentConfig(response_mime_type="application/json")
 
 ### 4. Búsqueda con Context Caching
 Si consultas repetidamente el mismo corpus masivo (ej: 1M+ tokens), habilita **Context Caching** para reducir latencia y costo drásticamente.
+
+---
+
+## 🛠️ Solución de Errores Comunes
+
+| Error | Causa | Solución |
+|-------|-------|----------|
+| `TypeError: get_document_metadata() missing...` | Falta de argumentos posicionales. | Pasar: `(modelo, folder_pdf, folder_save, prompt)`. |
+| `TypeError: 'dict' object is not subscriptable` | Intentar `chunks[0]` en un diccionario. | Usar `for key, value in chunks.items()` o `list(chunks.values())[0]`. |
+| `FileNotFoundError: Google_Branding/` | Las imágenes no se han descargado o la carpeta no existe. | Ejecutar `!gsutil -m rsync -r gs://spls/gsp520 .` primero. |
 
 ---
 
